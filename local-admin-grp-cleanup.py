@@ -39,7 +39,7 @@ def check_is_localadmin(user,host,session):
         print("[!] Next entry.")
         now = datetime.now()
         now = now.strftime("%d.%m.%Y %H:%M:%S")
-        writeToFile("log.txt",str(now) + " " + host + "Check_is_localadmin erreur\n")
+        writeToFile("log.txt",str(now) + " " + host + " : Check_is_localadmin erreur\n")
         print()
 
 def remove_admin_account(host,domain,user,session):
@@ -113,11 +113,13 @@ def main():
                                 now = now.strftime("%d.%m.%Y %H:%M:%S")
                                 writeToFile("log.txt",str(now) + " " + host + " [!] "+user+" is **not** admin on "+host+"\n")
                                 writeToFile("done.txt",host+"\n")
+                        else:
+                            print("[!!] WinRM **closed** on: " + host)
                     else:
                         print("[*] Host is NOT reachable: " + host)
 
-                else:
-                    print("[*] Already done: " + host)
+                #else:
+                    #print("[*] Already done: " + host)
 
 if __name__ == "__main__":
     while(True):
