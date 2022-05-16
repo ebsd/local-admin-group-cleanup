@@ -36,9 +36,9 @@ Attention, il ne faut aucun \newline à la fin du fichier inventaire.txt, sinon 
 IndexError: list index out of range
 ```
 
-### KErberos error
+### Kerberos error
 
-Le domaine est case sensitive dans vars.py, mieux vaut utiliser les majuscules. Sinon, selon la config de /etc/krb5.conf, le ticket ne sera pas "retouvé".
+Le nom du royaume est case sensitive dans `vars.py`, mieux vaut utiliser les majuscules en accord avec `/etc/krb5.conf`.
 
 ```
 Error:authGSSClientInit() failed: (('Unspecified GSS failure.  Minor code may provide more information', 851968), ("Can't find client principal xxxx@domain.lan in cache collection", -1765328243))
