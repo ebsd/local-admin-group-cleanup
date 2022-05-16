@@ -7,7 +7,7 @@ En entrée : une liste CSV de machine,compte,domaine AD du compte (inventaire.tx
 hostname,user,non_fqdn_userdomain
 ```
 
-Le fichier vars.py contient mes variables :
+Le fichier `vars.py` contient mes variables :
 
 ```
 # local admin username
@@ -16,6 +16,16 @@ adminuser = "adminuser"
 domain = "domain.lan"
 ```
 
-# Licence
+## Démarrage auto
+
+Via un cron, acviter le venv. La 1ère ligne correspond à la variable PATH qui doit être utilisée dans crond. Sans cette variable PATH, le script ne saura où est situé la commande fping.
+
+```
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+36 09 16 5 * source ~/python/check-hotfixes/python3.9/bin/activate && cd ~/python/local-admin-group-cleanup && python3.9 local-admin-grp-cleanup.py
+```
+
+
+## Licence
 
 WTFPL

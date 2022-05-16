@@ -3,7 +3,7 @@ import json
 import csv
 from datetime import datetime
 
-# my variables in vars.py
+# my variables in vars.py file
 ## adminuser = "adminuser"
 ## domain = "domain.lan"
 import vars
