@@ -25,6 +25,25 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 36 09 16 5 * source ~/python/check-hotfixes/python3.9/bin/activate && cd ~/python/local-admin-group-cleanup && python3.9 local-admin-grp-cleanup.py
 ```
 
+## Troubleshooting
+
+### IndexError
+
+Attention, il ne faut aucun \newline à la fin du fichier inventaire.txt, sinon :
+
+```
+    host = row[0]
+IndexError: list index out of range
+```
+
+### KErberos error
+
+Le domaine est case sensitive dans vars.py, mieux vaut utiliser les majuscules.
+
+```
+Error:authGSSClientInit() failed: (('Unspecified GSS failure.  Minor code may provide more information', 851968), ("Can't find client principal ebsdadm1@huge.ad.hcuge.ch in cache collection", -1765328243))
+```
+
 
 ## Licence
 
