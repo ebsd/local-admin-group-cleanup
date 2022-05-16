@@ -38,10 +38,10 @@ IndexError: list index out of range
 
 ### KErberos error
 
-Le domaine est case sensitive dans vars.py, mieux vaut utiliser les majuscules.
+Le domaine est case sensitive dans vars.py, mieux vaut utiliser les majuscules. Sinon, selon la config de /etc/krb5.conf, le ticket ne sera pas "retouvé".
 
 ```
-Error:authGSSClientInit() failed: (('Unspecified GSS failure.  Minor code may provide more information', 851968), ("Can't find client principal ebsdadm1@huge.ad.hcuge.ch in cache collection", -1765328243))
+Error:authGSSClientInit() failed: (('Unspecified GSS failure.  Minor code may provide more information', 851968), ("Can't find client principal xxxx@domain.lan in cache collection", -1765328243))
 ```
 
 
