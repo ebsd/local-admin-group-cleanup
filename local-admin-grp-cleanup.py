@@ -62,7 +62,7 @@ def remove_admin_account(host,domain,user,session):
             now = now.strftime("%d.%m.%Y %H:%M:%S")
             print("[+] Removed " + user + " admin priv on " + host)
             writeToFile("log.txt",str(now) + " " + host + " Removed " + user + " admin priv on " + host + "\n")
-            writeToFile("done.txt",host+"\n")
+            writeToFile("done.txt",host+","+user+"\n")
 
     except Exception as e:
         print("[!] Error ", e.__class__, "occurred.")
@@ -91,11 +91,13 @@ def main():
                 host = row[0]
                 user = row[1]
                 domain = row[2]
-                # je vérifie si la machine n'est pas déjà traitée
-                if not search_in_file(host,"done.txt"):
+                # je vérifie si le couple machine + user n'est pas déjà traitée
+                if not search_in_file(host+","+user,"done.txt"):
                     # la machine est-elle reachable ?
                     reachable = chkAlivefping(host)
                     #print(reachable)
+                    now = datetime.now()
+                    now = now.strftime("%d.%m.%Y %H:%M:%S")
                     if reachable:
                         print("[*] Host is reachable: " + host)
                         # test si le port WinRM est accessible
@@ -109,14 +111,14 @@ def main():
                                 remove_admin_account(host,domain,user,session)
                             if isAdmin == 3:
                                 print("[*] "+user+" is **not** admin on "+host)
-                                now = datetime.now()
-                                now = now.strftime("%d.%m.%Y %H:%M:%S")
                                 writeToFile("log.txt",str(now) + " " + host + " [!] "+user+" is **not** admin on "+host+"\n")
-                                writeToFile("done.txt",host+"\n")
+                                writeToFile("done.txt",host+","+user+"\n")
                         else:
                             print("[!!] WinRM **closed** on: " + host)
+                            writeToFile("log.txt",str(now) + " " + host + " [!] WinRM closed\n")
                     else:
                         print("[*] Host is NOT reachable: " + host)
+                        writeToFile("log.txt",str(now) + " " + host + " [!] NOT reachable\n")
 
                 #else:
                     #print("[*] Already done: " + host)
